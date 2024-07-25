@@ -129,7 +129,8 @@ function App() {
         />
       </div>
       <MemberGrid 
-      members={displayMembers} />
+      members={displayMembers}
+      gamePlaying = {gamePlaying} />
     </>
   );
 }
