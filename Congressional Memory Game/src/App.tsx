@@ -26,7 +26,6 @@ function App() {
   const [gamePlaying, setGamePlaying] = useState(false);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
-  const [allTimeHigh, setAllTimeHigh] = useState(0);
   const [selectedPeople, setSelectedPeople] = useState<Member[]>([]);
   
   useEffect(() => {
@@ -90,6 +89,8 @@ function App() {
   }
 
   function start() {
+    setScore(0)
+    setHighScore(0)
     const numberOfPeople = parseInt(inputNumber, 10);
     if (!isNaN(numberOfPeople) && numberOfPeople > 0) {
       const randomMembers = chooseRandom(numberOfPeople);
@@ -148,16 +149,17 @@ function App() {
         gamePlaying={gamePlaying}
       />
       <div className={` ${spinning ? 'animate-spin-slow' : 'animate-none'} background -z-20 fixed w-full h-full grayscale opacity-15 `} />
-      <div>
+      <div className={`${spinning? 'visible':'invisible'} fixed left-[44%] bottom-0`}>
         <h1>Loading...</h1>
       </div>
-      <div className='flex bg-[#242424] w-full h-auto fixed top-0 justify-around flex-wrap z-10'>
+      <div className='flex bg-[#242424] w-full h-auto fixed top-0 justify-around flex-wrap z-10 items-center'>
         <ButtonGroup 
           onAllClick={handleAllButton}
           onSenatorClick={handleSenatorButton}
           onHouseClick={handleHouseButton}
           gamePlaying={gamePlaying}
         />
+        <h1 className='font-extralight'>Memory Game</h1>
         <InputSection
           inputNumber={inputNumber}
           onInputChange={handleInput}

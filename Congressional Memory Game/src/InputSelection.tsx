@@ -9,7 +9,7 @@ interface InputSectionProps {
 }
 
 const InputSection: React.FC<InputSectionProps> = ({ inputNumber, onInputChange, onStartClick, gamePlaying }) => (
-  <div className={`items-center self-center p-2 flex gap-4 top-0 right-12 justify-center ${gamePlaying? 'invisible':'visible'}`}>
+  <div className={`items-center self-center p-2 flex gap-4 bg-[#242424] rounded-2xl justify-center ${gamePlaying? 'invisible':'visible'}`}>
     <h3>How many people?</h3>
     <input
       type="text"
