@@ -1,11 +1,11 @@
-// MemberCard.tsx
 import React from 'react';
 import { Member } from './types'; // Import the Member type from a common types file
 
-const MemberCard: React.FC<{ member: Member, gamePlaying: boolean }> = ({ member , gamePlaying}) => (
+const MemberCard: React.FC<{ member: Member, gamePlaying: boolean, handleCardClick: (member: Member) => void }> = ({ member, gamePlaying, handleCardClick }) => (
   <div
+    onClick={() => handleCardClick(member)}
     key={member.id}
-    className={`card w-[200px] h-[320px] scale-75 hover:scale-105 hover:z-0 z-0 transition-all shadow-lg items-center flex flex-col p-4 rounded-lg border-2 bg-neutral-900 ${gamePlaying === true? 'cursor-pointer':'cursor-auto'} ${member.partyName === "Democratic" ? "border-blue-600" : member.partyName === "Republican" ? "border-red-600" : "border-green-600"}`}
+    className={`card w-[200px] h-[320px] scale-75 hover:scale-105 hover:z-0 z-0 transition-all shadow-lg items-center flex flex-col p-4 rounded-lg border-2 bg-neutral-900 ${gamePlaying ? 'cursor-pointer' : 'cursor-auto'} ${member.partyName === "Democratic" ? "border-blue-600" : member.partyName === "Republican" ? "border-red-600" : "border-green-600"}`}
   >
     {member.depiction ? (
       <div className='w-full h-[180px] flex items-center justify-center overflow-hidden'>
@@ -22,9 +22,8 @@ const MemberCard: React.FC<{ member: Member, gamePlaying: boolean }> = ({ member
     )}
     <h2 className='mt-2 text-center font-semibold text-lg border-b-2'>{member.name}</h2>
     <h2 className='mt-2 text-center'>{member.partyName}</h2>
-    <h2 className='mt-2 text-center'>{`${member.state} (${member.district === undefined ? "N/A" : `D`+member.district})`}</h2>
+    <h2 className='mt-2 text-center'>{`${member.state} (${member.district === undefined ? "N/A" : `D${member.district}`})`}</h2>
   </div>
 );
 
 export default MemberCard;
- 
